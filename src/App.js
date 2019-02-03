@@ -1,28 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import CardList from './components/CardList';
+import { robots } from './robots';
+import SearchBox from './components/SearchBox';
+import Scroll from './components/Scroll';
+import Footer from './components/Footer';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      robots: robots,
+      searchfield: ''
+    }
   }
+  onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value })
+  }
+
+  render(){
+    const { robots, searchfield } = this.state;
+    const filteredRobots = robots.filter(robot =>{
+      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+    })
+  return(
+         <div className="tc">
+           <h1>ROBOFRIENDS</h1>
+
+         
+          <SearchBox searchChange= {this.onSearchChange}/>
+          <Scroll>
+           <CardList robots={filteredRobots}/>
+           </Scroll> 
+           <Footer />
+         </div>   
+  );
+ }
+
 }
 
+
 export default App;
+
+// state, which is "robots", is now passed down as "props" so "CardList", //children accepts "robots" as "props" even though in the app.js it's a //"state". 
+// "App" now owns "state" that includes "robots" it's allowed to change it. //Now the way they can  communicate, we have these two valleys, and ideally in the search box I have something
+
+//called "onSearchChange()", which again is a function that I'm just going //to make up
+//And "onSearchChange()" I want to say that every time the input changes, just like we did with DOM manipulation,
