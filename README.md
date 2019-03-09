@@ -14,6 +14,6 @@ While building the projects we used:
 4. react form
 5. use of API
 6. Data just flows down one way and any time a child component changes, they just trigger an event on the parent
-7. react-form and how it works
+
 
 
