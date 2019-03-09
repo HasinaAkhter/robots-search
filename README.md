@@ -12,7 +12,7 @@ While building the projects we used:
 2. Components and how they communicate with each other
 3. props and state
 4. react form
-5. use of API
+5. use of API, react's life-cycle hook, use of componentDidMount()
 6. Data just flows down one way and any time a child component changes, they just trigger an event on the parent
 
 
